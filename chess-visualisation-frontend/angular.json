@@ -36,7 +36,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/chessboardjs/www/releases/0.3.0/js/chessboard-0.3.0.js"
-           ]
+            ]
           },
           "configurations": {
             "production": {
@@ -129,6 +129,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "chess-visualisation-frontend"
 }
