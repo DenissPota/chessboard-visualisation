@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-lobby',
@@ -7,12 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LobbyComponent implements OnInit {
 
-  constructor() { }
+  isStarted: boolean = false;
+  timerSeconds: number;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   setTimer(timerSeconds: number) {
-
+    this.timerSeconds = timerSeconds;
   }
+
+
 }

@@ -1,24 +1,30 @@
-<div class="container " style="margin-top: 70px;">
-  <div class="row">
-    <div class="col-sm-3">
-      <h3 class="float-right"><small>Set timer:</small></h3>
-    </div>
-    <div class="col-sm-6 text-center">
-      <div class="btn-group btn-group-justified">
-        <a href="#" class="btn btn-primary" (click)="setTimer(15)">15s</a>
-        <a href="#" class="btn btn-primary" (click)="setTimer(30)">30s</a>
-        <a href="#" class="btn btn-primary" (click)="setTimer(45)">60s</a>
+<div class="container" style="margin-top: 70px;">
+  <ng-container *ngIf="!isStarted">
+    <div class="row">
+      <div class="col-sm-3">
+        <h3 class="float-right"><small>Set timer:</small></h3>
       </div>
+      <div class="col-sm-6 text-center">
+        <div class="btn-group btn-group-justified">
+          <a href="#" class="btn btn-primary" (click)="setTimer(15)">15s</a>
+          <a href="#" class="btn btn-primary" (click)="setTimer(30)">30s</a>
+          <a href="#" class="btn btn-primary" (click)="setTimer(45)">60s</a>
+        </div>
+      </div>
+      <div class="col-sm-3"></div>
     </div>
-    <div class="col-sm-3"></div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="col-sm-3"></div>
-    <div class="col-sm-6 text-center">
-      <a class="btn btn-primary" routerLink="/training">
-        <span><h1>Start</h1></span>
-      </a>
+    <br>
+    <div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 text-center">
+        <a class="btn btn-primary">
+          <span (click)="isStarted = !isStarted"><h1>Start</h1></span>
+        </a>
+      </div>
+      <div class="col-sm-3"></div>
     </div>
-    <div class="col-sm-3"></div>
-  </div>
+  </ng-container>
+  <ng-container *ngIf="isStarted">
+    <app-chessboard [seconds]="timerSeconds"></app-chessboard>
+  </ng-container>
+</div>

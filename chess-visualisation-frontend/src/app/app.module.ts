@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './footer/footer.component';
 import { LobbyComponent } from './lobby/lobby.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LobbyComponent } from './lobby/lobby.component';
     ChessboardComponent,
     HeaderComponent,
     FooterComponent,
-    LobbyComponent
+    LobbyComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

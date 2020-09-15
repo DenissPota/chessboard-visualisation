@@ -1,7 +1,11 @@
 <div class="container" style="margin-top: 70px;">
   <div class="row">
     <div class="col-sm-3">
-      <h3 *ngIf="!guessingPhase"><small>Try to remember this position.</small></h3>
+      <ng-container *ngIf="!guessingPhase">
+        <h3><small>Try to remember this position.</small></h3>
+        {{seconds}}
+      </ng-container>
+
       <h3 *ngIf="guessingPhase"><small>Drag pieces to replicate previous position.</small></h3>
     </div>
     <div class="col-sm-6" id="board1" style="width: 800px"></div>

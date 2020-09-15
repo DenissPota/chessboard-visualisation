@@ -1,7 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import * as ChessBoard from 'chessboardjs/www/js/chessboard';
 import {BoardPositionService} from "../../service/board-position.service";
 import {BoardPosition} from "../interface/board-position";
+import {interval, Observable} from 'rxjs';
+import {map} from 'rxjs/operators'
 
 @Component({
   selector: 'app-chessboard',
@@ -15,6 +17,8 @@ export class ChessboardComponent implements AfterViewInit {
   guessingPhase: boolean = false;
   winning: String;
   currentBoardPosition: BoardPosition;
+  @Input()
+  seconds: number;
 
   constructor(boardPositionService: BoardPositionService) {
     this.boardPositionService = boardPositionService;
@@ -22,14 +26,24 @@ export class ChessboardComponent implements AfterViewInit {
 
   ngOnInit(): void {
     this.getRandomPosition();
+    this.decreaseTimer()
   }
 
   ngAfterViewInit() {
     this.board1 = ChessBoard('board1', {
       draggable: true,
-      //sparePieces:true,
       position: this.currentBoardPosition.fen
     });
+  }
+
+  decreaseTimer() {
+    const interval = setInterval(() => {
+      this.seconds--;
+      if (this.seconds === 0) {
+        clearInterval(interval);
+        this.clearBoard();
+      }
+    }, 1000)
   }
 
   getRandomPosition(): void {
