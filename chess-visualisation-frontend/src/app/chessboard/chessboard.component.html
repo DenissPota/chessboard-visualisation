@@ -3,12 +3,11 @@
     <div class="col-sm-3">
       <ng-container *ngIf="!guessingPhase">
         <h3><small>Try to remember this position.</small></h3>
-        {{seconds}}
+        <h3><small>Time left: {{seconds}}</small></h3>
       </ng-container>
-
-      <h3 *ngIf="guessingPhase"><small>Drag pieces to replicate previous position.</small></h3>
+      <h3 *ngIf="guessingPhase"><small>Drag pieces to set the last position.</small></h3>
     </div>
-    <div class="col-sm-6" id="board1" style="width: 800px"></div>
+    <div class="col-sm-6"  id="board1" style="width: 800px"></div>
 
     <div class="col-sm-3">
     </div>
@@ -17,12 +16,25 @@
       <div class="col-md-3"></div>
       <div class="col-md-6 text-center">
         <br>
-        <button *ngIf="!guessingPhase" class="btn btn-primary" (click)="clearBoard()">Clear board</button>
-        <ng-container *ngIf="guessingPhase">
+<!--        <button *ngIf="!guessingPhase" class="btn btn-primary" (click)="clearBoard()">Clear board</button>-->
+        <ng-container *ngIf="guessingPhase && isGuessCorrect === undefined" >
           <button class="btn btn-success" (click)="compareGuess()">I'm ready</button>
         </ng-container>
         <br>
-        <h1>{{winning}}</h1>
+        <ng-container *ngIf="isGuessCorrect !== undefined">
+          <div class="alert" [ngClass]="isGuessCorrect === true? 'alert-success' : 'alert-danger'" role="alert">
+            <div *ngIf="isGuessCorrect; else templateName">
+              <h1>Correct!</h1>
+            </div>
+            <ng-template #templateName>
+              <h1>Wrong!</h1>
+            </ng-template>
+          </div>
+          <br>
+          <button class="btn btn-primary" (click)="restartComponent()">Next</button>
+        </ng-container>
       </div>
-      <div class="col-md-3"></div>
+      <div class="col-md-3">
+
+      </div>
   </div>
